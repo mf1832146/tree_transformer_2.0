@@ -5,7 +5,7 @@ from solver import Solver
 def parse():
     parser = argparse.ArgumentParser(description='tree transformer')
     parser.add_argument('-model_dir', default='train_model', help='output model weight dir')
-    parser.add_argument('-batch_size', type=int, default=1)
+    parser.add_argument('-batch_size', type=int, default=16)
     parser.add_argument('-num_step', type=int, default=250)
     parser.add_argument('-data_dir', default='./data')
     parser.add_argument('-load', action='store_true', help='load pretrained model')
@@ -25,9 +25,9 @@ def parse():
     parser.add_argument('-relative_pos', type=bool, default=True, help='use relative position')
     parser.add_argument('-k', type=int, default=5, help='relative window size')
     parser.add_argument('-num_layers', type=int, default=3, help='layer num')
-    parser.add_argument('-model_dim', type=int, default=100)
-    parser.add_argument('-num_heads', type=int, default=4)
-    parser.add_argument('-ffn_dim', type=int, default=512)
+    parser.add_argument('-model_dim', type=int, default=256)
+    parser.add_argument('-num_heads', type=int, default=8)
+    parser.add_argument('-ffn_dim', type=int, default=2048)
     parser.add_argument('-dropout', type=float, default=0.2)
 
     args = parser.parse_args()

@@ -1,3 +1,5 @@
+from pytorch_pretrained_bert import BertAdam
+
 from module import make_model
 import time
 import os
@@ -49,8 +51,11 @@ class Solver:
 
         print('load training data finished')
 
+        #model_opt = NoamOpt(self.model.code_embed.d_model, 1, 2000,
+        #                    torch.optim.Adam(self.model.parameters(), lr=0, betas=(0.9, 0.98), eps=1e-9))
         model_opt = NoamOpt(self.model.code_embed.d_model, 1, 2000,
-                            torch.optim.Adam(self.model.parameters(), lr=0, betas=(0.9, 0.98), eps=1e-9))
+                            BertAdam(self.model.parameters(), lr=1e-4))
+
         criterion = LabelSmoothing(size=self.args.comment_vocab_size,
                                    padding_idx=0, smoothing=0.1)
         criterion = criterion.cuda()
